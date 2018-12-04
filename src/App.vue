@@ -11,14 +11,6 @@
   import FooterGuide from './components/FooterGuide/FooterGuide'
 
   export default {
-     mounted() {
-    //异步获取地址数据(到vuex的state中)
-      this.$store.dispatch('getAddress')
-      //异步获取取商铺列表
-      this.$store.dispatch('getShops')
-      //异步获取当前用户信息
-      this.$store.dispatch('getUser')
-    },
     name: 'App',
     components: {
       FooterGuide,

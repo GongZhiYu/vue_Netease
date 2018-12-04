@@ -4,8 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-import './mock/mockServer'
-import './filters/index'
+import 'lib-flexible/flexible.js'
+/*import './mock/mockServer'*/
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
