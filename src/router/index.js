@@ -34,9 +34,6 @@ export default new VueRouter({
     {
       path:'/personage',
       component:Personage,
-      meta:{
-        FooterGuide:true  //标识底部显示
-      }
     },
     {
       path:'/things',
