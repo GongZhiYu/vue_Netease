@@ -7,7 +7,7 @@
             <div class="m-cartHd">
               <span class="logo">购物车</span>
               <div class="right">
-                <a href="" class="cart-coupon">
+                <a href="javascript:;" class="cart-coupon">
                   <span class="txt">领券</span>
                 </a>
                 <span class="cart-btn"></span>
@@ -37,7 +37,7 @@
             <div class="txt">
               <div class="noCart-login">
                 <div class="noCart-title">去添加点什么吧</div>
-                <div class="noCart-btn">登录</div>
+                <div class="noCart-btn" @click="register">登录</div>
               </div>
             </div>
           </div>
@@ -53,8 +53,19 @@
 
   export default {
     components:{
-
-    }
+    },
+    methods:{
+      //跳转登录路由
+      register(){
+        this.$router.push('/personage')
+      }
+    },
+    metaInfo:{
+      meta:[
+        {name:"viewport",
+          content:"width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no"}
+      ]
+    },
   }
 </script>
 

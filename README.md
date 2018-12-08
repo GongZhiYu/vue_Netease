@@ -31,7 +31,7 @@
                           })
                           }
                               
-                              
+​                              
    遇到的问题:                  
                                     box-sizing: border-box //ie盒子
                                     padding 0 .4rem ///////
@@ -41,3 +41,88 @@
 
 ## 第二天
     静态网页 : 分类 识物 购物车 个人
+    
+    基本路由的跳转  
+    
+    
+
+## 第三天
+## 第三天
+
+```
+mock数据,将获取到的数据添加到vuex状态管理中
+       ./mock/mockServer 暴露接口 json
+       ./api/ajax  api/index   ajax请求
+vuex:: 定义基本初始化数据--->state
+       定义数据的名称产量--->mutation-types
+       定义同步数据/获取数据-->mutations
+       定义异步更改/获取数据 --->actions
+       定义计算属性更改数据---->getters
+       
+       this.$store.dispatch('')分发action  获取数据
+       ...mapState([''])  结构对象 拿到对象里面的属性获取他们的值   遍历对象
+      
+      拆分基本路由,将获取到的mock数据动态添加到页面上
+       
+        //伪数组转真数组遍历
+           Array.from().map(()=>{})
+
+   
+       什么时候要加v-if  报错了 数据出来了 但是报错
+       
+      问题:bigPromotionModule.bigPromotionList[0].data.contents[0].picUrl   嵌套太深  使用(v-if判断)
+      对象的长度永远都是true,渲染第一次还是true, 所以v-if="bigPromotionModule.length"还是true (对象不要加length)
+      数组长度就有true和false  可以使用length
+      解决方案:v-if="bigPromotionModule.对象的属性" (  v-if="bigPromotionModule.backgroundUrl)
+      
+      问题:v-for只是循环遍历那一块的 就是对父容器进行循环遍历,只管这个父容器里面的  不是全局的
+      首页动态数据
+```
+
+## 第四天
+
+```
+   this.$store.dispatch('')分发action  获取数据
+   ...mapState([''])  结构对象 拿到对象里面的属性获取他们的值   ...展开(遍历)对象
+   
+    实现滚动条::      
+    mounted(){
+     new BScroll('.nav-list', {
+            click: true
+          })
+      }
+    分类页动态数据 切换功能 通过index 
+    切换功能::
+              通过 v-fro循环遍历数组拿到数组中每一个对象
+              动态获取当前点击目标元素的index值(下标)
+              给点击的目标元素添加一个类 active(就是当前下标是否和动态获取的index值相同)(index是自己定义的===0)
+                      (sub就是下标 不管写什么还是下标)
+              v-for="(so,sub) in sort" :key="sub" :class="{active: sub===index}" @click="dot(sub)"
+              在data中初始化index的值(index:0) 再在methods中接收点击元素的值(dot)传的(sub)然后动态改变自定义index的值 (this.index=sub)
+    
+    识物页动态数据 瀑布流布局:
+        创建一个空数组      subs:[]  在data初始化中创建
+        使用循环遍历general,   this.general.map((gen)=>{} gen是遍历general出来的
+        拿到gen里面的属性给subs ,,, return this.subs.push(gen.topics)
+        (一维数组是由数字组成的以单纯的排序结构排列的结构单一的数组) (二维及多维数组可以看作是一维数组的多次叠加产生的。)
+        多维数组转一维数组      let res = [].concat.apply([],this.subs)
+        最后使用 v-if判断数组的type值是否为0或1 是0就是这种布局  是1就是另外一种 
+        ( v-if="sub.type === 1") (v-else="sub.type === 0")
+        
+        
+        手机登陆静态页面
+        邮箱登陆静态页面
+        登陆成功页面
+     
+```
+
+
+
+## 第五天
+
+```
+
+```
+
+
+

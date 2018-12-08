@@ -8,7 +8,7 @@
             <i class="icon"></i>
             <span class="placeholder">搜索商品, 共19914款好物</span>
           </div>
-          <div class="loginBtn">登录</div>
+          <div class="loginBtn" @click="register">登录</div>
         </div>
         <div class="tabWrap">
           <div class="m-tabs   scroll">
@@ -87,89 +87,14 @@
       </div>
 
     </div>
-    <div class="slideWarp">
-      <div class="m-slide m-indexSlide">
-        <div class="slide-con">
-          <div class="swiper-container">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <img
-                  src="https://yanxuan.nosdn.127.net/850c005113e5becbfd98d797b8a2101a.jpg?imageView&quality=75&thumbnail=750x0">
-              </div>
-              <div class="swiper-slide ">
-                <img
-                  src="https://yanxuan.nosdn.127.net/1d66a50452354fa28b045853c078cbe3.jpg?imageView&quality=75&thumbnail=750x0"
-                  alt="">
-              </div>
-              <div class="swiper-slide ">
-                <img
-                  src="https://yanxuan.nosdn.127.net/fda101d5e6beeb56d0ff8245139ff30b.jpg?imageView&quality=75&thumbnail=750x0"
-                  alt="">
-              </div>
-              <div class="swiper-slide ">
-                <img
-                  src="https://yanxuan.nosdn.127.net/03d8a81e7be4bb1a8d44dc2118f944a4.jpg?imageView&quality=75&thumbnail=750x0"
-                  alt="">
-              </div>
-              <div class="swiper-slide">
-                <img
-                  src="https://yanxuan.nosdn.127.net/e0c3e253dcfdb170bda823ac5b71247e.jpg?imageView&quality=75&thumbnail=750x0"
-                  alt="">
-              </div>
-              <div class="swiper-slide">
-                <img
-                  src="https://yanxuan.nosdn.127.net/018b7902a3fb1e48dbdd8b7bb42674aa.jpg?watermark&type=1&gravity=northwest&dx=0&dy=0&image=YTRhMmIzYmI1Y2I1YTc4ZGM5MmE3Nzk2NzAwYTFiNjgucG5n|imageView&quality=75&thumbnail=750x0"
-                  alt="">
-              </div>
-              <div class="swiper-slide">
-                <img
-                  src="https://yanxuan.nosdn.127.net/a209d8ec4efb502140d086773cd04c76.jpg?watermark&type=1&gravity=northwest&dx=0&dy=0&image=YTRhMmIzYmI1Y2I1YTc4ZGM5MmE3Nzk2NzAwYTFiNjgucG5n|imageView&quality=75&thumbnail=750x0"
-                  alt="">
-              </div>
-              <div class="swiper-slide">
-                <img
-                  src="https://yanxuan.nosdn.127.net/5a2289149a59ca24ef2256674542e4cb.jpg?imageView&quality=75&thumbnail=750x0"
-                  alt="">
-              </div>
-              <div class="swiper-slide">
-                <img
-                  src="https://yanxuan.nosdn.127.net/850c005113e5becbfd98d797b8a2101a.jpg?imageView&quality=75&thumbnail=750x0"
-                  alt="">
-              </div>
-              <div class="swiper-slide">
-                <img
-                  src="https://yanxuan.nosdn.127.net/1d66a50452354fa28b045853c078cbe3.jpg?imageView&quality=75&thumbnail=750x0"
-                  alt="">
-              </div>
-            </div>
-            <div class="swiper-pagination"></div>
-
-          </div>
-        </div>
-
-      </div>
-    </div>
+    <lbt :focusList="focusList"/>
     <div class="m-indexServicePolicy newUser active">
       <ul class="g-grow">
-        <li class="item">
+        <li class="item" v-for="(desclist,index) in policyDescList" :key="index">
           <a href="javascript:;">
             <i class="u-icon u-icon-servicePolicy-index"
-               style="background-image:url(http://yanxuan.nosdn.127.net/cae45612b8aae577d8bd73338e2fc02c.png);"></i>
-            <span class="text">网易自营品牌</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="javascript:;">
-            <i class="u-icon u-icon-servicePolicy-index"
-               style="background-image:url(http://yanxuan.nosdn.127.net/cae45612b8aae577d8bd73338e2fc02c.png);"></i>
-            <span class="text">30天无忧退货</span>
-          </a>
-        </li>
-        <li class="item">
-          <a href="javascript:;">
-            <i class="u-icon u-icon-servicePolicy-index"
-               style="background-image:url(http://yanxuan.nosdn.127.net/cae45612b8aae577d8bd73338e2fc02c.png);"></i>
-            <span class="text">48小时快速退款</span>
+               :style="{backgroundImage: `url(${desclist.icon})`}"></i>
+            <span class="text">{{desclist.desc}}</span>
           </a>
         </li>
 
@@ -178,69 +103,37 @@
     <div class="m-kingKongModule">
       <div class="m-carousel ">
         <ul>
-          <li>
-            <img src="http://yanxuan.nosdn.127.net/98b6a6fc32f1fea861934816729e2cf5.png" alt="">
-            <span>局家</span>
-          </li>
-          <li>
-            <img src="http://yanxuan.nosdn.127.net/46d33b9a9fbb659fcbac37ec58d51e62.png" alt="">
-            <span>鞋包配置</span>
-          </li>
-          <li>
-            <img src="http://yanxuan.nosdn.127.net/31831ada59dc10319cba195620ed9ed0.png" alt="">
-            <span>服装</span>
-          </li>
-          <li>
-            <img src="http://yanxuan.nosdn.127.net/45833c71d4b0d0de0755a20f893fa25f.png" alt="">
-            <span>电器</span>
-          </li>
-          <li>
-            <img src="http://yanxuan.nosdn.127.net/2fde77529e90a26427d1c02faa3bfbf6.png" alt="">
-            <span>婴童</span>
-          </li>
-          <li>
-            <img src="http://yanxuan.nosdn.127.net/15e364ca93313bbd6e87dfcba7ae7b74.png" alt="">
-            <span>饮商</span>
-          </li>
-          <li>
-            <img src="http://yanxuan.nosdn.127.net/793bca13bb931475ea7f0c00299362bb.png" alt="">
-            <span>洗护</span>
-          </li>
-          <li>
-            <img src="http://yanxuan.nosdn.127.net/fc3e359da08577228354da61ea912c99.png" alt="">
-            <span>餐厨</span>
-          </li>
-          <li>
-            <img src="http://yanxuan.nosdn.127.net/97eb6fd2c7ea76a3a42b9dafa3bd6543.png" alt="">
-            <span>文体</span>
-          </li>
-          <li>
-            <img src="http://yanxuan.nosdn.127.net/db5e2ce8c66f7db3f4282ecb24a64236.png" alt="">
-            <span>超级会员</span>
+          <li v-for="(king,index) in kingKongModule.kingKongList" :key="index">
+            <img :src="king.picUrl">
+            <span>{{king.text}}</span>
           </li>
 
         </ul>
       </div>
       <div class="m-indexBigPromotionModule"
-           style="width:10rem;height:4.408888888888889rem;background:url(https://yanxuan.nosdn.127.net/15435901919894506.png?imageView&crop=0_0_750_496);background-size:100% 100%;">
+           :style="{backgroundImage: `url(${bigPromotionModule.backgroundUrl})`}">
         <div>
-          <a href="javascript:;" class="promItem" style="width:100%;height:100%;"><img
-            src="https://yanxuan.nosdn.127.net/15435902145614507.gif" style="width: 100%; height:100%;"></a>
+          <a href="javascript:;" class="promItem" style="width:100%;height:100%;"
+             v-if="bigPromotionModule.backgroundUrl"><img
+            :src="bigPromotionModule.bigPromotionList[0].data.contents[0].picUrl"></a>
         </div>
         <div
           style="width:10rem;height:5.226666666666667rem;background:url(https://yanxuan.nosdn.127.net/15435901919894506.png?imageView&crop=0_496_750_588);background-size:100% 100%;">
           <div class="m-lazyload img m-lazyload-loaded">
-            <img src="https://yanxuan.nosdn.127.net/15435902383484509.png"
+            <img :src="bigPromotionModule.bigPromotionList[1].data.contents[0].picUrl" v-if="bigPromotionModule.backgroundUrl"
                  style="width: 187px;height: 196px;float:left;">
-            <img src="https://yanxuan.nosdn.127.net/15435902616394510.png"
+            <img :src="bigPromotionModule.bigPromotionList[1].data.contents[1].picUrl" v-if="bigPromotionModule.backgroundUrl"
                  style="width: 187px;height: 98px;float:right;">
-            <img src="https://yanxuan.nosdn.127.net/15439064549673720.png" alt="" style="width: 187px;height: 98px;">
+            <img :src="bigPromotionModule.bigPromotionList[1].data.contents[2].picUrl" v-if="bigPromotionModule.backgroundUrl"
+                 style="width: 187px;height: 98px;">
           </div>
         </div>
         <div
           style="width:10rem;height:2.7111111111111112rem;background:url(https://yanxuan.nosdn.127.net/15435901919894506.png?imageView&crop=0_1084_750_305);background-size:100% 100%;">
-          <img src="https://yanxuan.nosdn.127.net/15438955793172733.png" style="width: 187px;height: 98px;float:left;">
-          <img src="https://yanxuan.nosdn.127.net/15435903918604513.png" style="width: 187px;height: 98px;float:left;">
+          <img :src="bigPromotionModule.bigPromotionList[2].data.contents[0].picUrl" v-if="bigPromotionModule.backgroundUrl"
+               style="width: 187px;height: 98px;float:left;">
+          <img :src="bigPromotionModule.bigPromotionList[2].data.contents[1].picUrl" v-if="bigPromotionModule.backgroundUrl"
+               style="width: 187px;height: 98px;float:left;">
         </div>
         <div
           style="width: 100%; height: 0.133333rem; background: url(https://yanxuan.nosdn.127.net/15435901919894506.png?imageView&crop=0_1389_750_15) 0% 0% / 100% 100%;"></div>
@@ -296,48 +189,290 @@
         </div>
       </div>
     </div>
+    <div class="private">
+      <div class="private-title">
+        <div class="left"><span>私人订制</span></div>
+      </div>
+      <div class="private-lbt">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <li class="item">
+                <a href="javascript:;" class="good">
+                  <div class="tupian">
+                    <div><img src="./images/a/a1.png" alt="xxx"></div>
+                  </div>
+                  <div class="name">
+                    <span>天然成分足贴 祛除湿气</span>
+                    <span class="price">
+                      <span class="priceInner">
+                        <span>￥58</span>
+                      </span>
+                    </span>
+                  </div>
+                  <div class="specification">
+                    <div>倭</div>
+                    <div>寇</div>
+                    <div>制</div>
+                    <div>造</div>
+                  </div>
+                </a>
+              </li>
+              <li class="item">
+                <a href="javascript:;" class="good">
+                  <div class="tupian">
+                    <div><img src="./images/a/a2.png" alt="xxx"></div>
+                  </div>
+                  <div class="name">
+                    <span>30包 谷风一木小卷纸囤...</span>
+                    <span class="price">
+                      <span class="priceInner">
+                        <span>￥76.9</span>
+                      </span>
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li class="item">
+                <a href="javascript:;" class="good">
+                  <div class="tupian">
+                    <div><img src="./images/a/a3.png" alt="xxx"></div>
+                  </div>
+                  <div class="name">
+                    <span>日式和风超声波香薰机</span>
+                    <span class="price">
+                      <span class="priceInner">
+                        <span>￥168</span>
+                      </span>
+                    </span>
+                  </div>
+                </a>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li class="item">
+                <a href="javascript:;" class="good">
+                  <div class="tupian">
+                    <div><img src="./images/a/a4.png" alt="xxx"></div>
+                  </div>
+                  <div class="name">
+                    <span>3双/5双装 女式日系罗...</span>
+                    <span class="price">
+                      <span class="priceInner">
+                        <span>￥36.9</span>
+                      </span>
+                    </span>
+                  </div>
+                  <div class="specification">
+                    <div>5</div>
+                    <div>色</div>
+                    <div>可</div>
+                    <div>选</div>
+                  </div>
+                </a>
+              </li>
+              <li class="item">
+                <a href="javascript:;" class="good">
+                  <div class="tupian">
+                    <div><img src="./images/a/a5.png" alt="xxx"></div>
+                  </div>
+                  <div class="name">
+                    <span>网易智造T300无线吸尘...</span>
+                    <span class="price">
+                      <span class="priceInner">
+                        <span>￥1229</span>
+                      </span>
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li class="item">
+                <a href="javascript:;" class="good">
+                  <div class="tupian">
+                    <div><img src="./images/a/a6.png" alt="xxx"></div>
+                  </div>
+                  <div class="name">
+                    <span>头层牛皮制作，自动扣设计更方便</span>
+                    <span class="price">
+                      <span class="priceInner">
+                        <span>￥109</span>
+                      </span>
+                    </span>
+                  </div>
+                </a>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li class="item">
+                <a href="javascript:;" class="good">
+                  <div class="tupian">
+                    <div><img src="./images/a/a7.png" alt="xxx"></div>
+                  </div>
+                  <div class="name">
+                    <span>即食燕窝 70克*6瓶 ...</span>
+                    <span class="price">
+                      <span class="priceInner">
+                        <span>￥258</span>
+                      </span>
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li class="item">
+                <a href="javascript:;" class="good">
+                  <div class="tupian">
+                    <div><img src="./images/a/a8.png" alt="xxx"></div>
+                  </div>
+                  <div class="name">
+                    <span>泰国制造 天然乳胶枕 护...</span>
+                    <span class="price">
+                      <span class="priceInner">
+                        <span>￥199</span>
+                      </span>
+                    </span>
+                  </div>
+                  <div class="specification">
+                    <div>泰</div>
+                    <div>国</div>
+                    <div>制</div>
+                    <div>造</div>
+                  </div>
+                </a>
+              </li>
+              <li class="item">
+                <a href="javascript:;" class="good">
+                  <div class="tupian">
+                    <div><img src="./images/a/a9.png" alt="xxx"></div>
+                  </div>
+                  <div class="name">
+                    <span>懒人抹布</span>
+                    <span class="price">
+                      <span class="priceInner">
+                        <span>￥13.99</span>
+                      </span>
+                    </span>
+                  </div>
+                </a>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li class="item">
+                <a href="javascript:;" class="good">
+                  <div class="tupian">
+                    <div><img src="./images/a/a10.png" alt="xxx"></div>
+                  </div>
+                  <div class="name">
+                    <span>每日坚果</span>
+                    <span class="price">
+                      <span class="priceInner">
+                        <span>￥29.9</span>
+                      </span>
+                    </span>
+                  </div>
+                  <div class="specification">
+                    <div>2</div>
+                    <div>个</div>
+                    <div>规</div>
+                    <div>格</div>
+                  </div>
+                </a>
+              </li>
+              <li class="item">
+                <a href="javascript:;" class="good">
+                  <div class="tupian">
+                    <div><img src="./images/a/a11.png" alt="xxx"></div>
+                  </div>
+                  <div class="name">
+                    <span>严选礼品卡 100元面值</span>
+                    <span class="price">
+                      <span class="priceInner">
+                        <span>￥100</span>
+                      </span>
+                    </span>
+                  </div>
+                </a>
+              </li>
+              <li class="item">
+                <a href="javascript:;" class="good">
+                  <div class="tupian">
+                    <div><img src="./images/a/a12.png" alt="xxx"></div>
+                  </div>
+                  <div class="name">
+                    <span>网易智造双光源记忆护目灯</span>
+                    <span class="price">
+                      <span class="priceInner">
+                        <span>￥199</span>
+                      </span>
+                    </span>
+                  </div>
+                  <div class="specification">
+                    <div>2</div>
+                    <div>色</div>
+                    <div>可</div>
+                    <div>选</div>
+                  </div>
+                </a>
+              </li>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </div>
   </div>
 
 </template>
 
 <script>
-  import Swiper from 'swiper'
-  import 'swiper/dist/css/swiper.min.css'
-  import BScroll from 'better-scroll'
 
+  import BScroll from 'better-scroll'
+  import {mapState} from 'vuex'
+  import lbt from '../../components/LBT/LBT.vue'
 
 
   export default {
-    components: {},
-    // 必须在列表数据显示之后创建才能正常形成轮播
+    computed: {
+      ...mapState(['kingKongModule', 'bigPromotionModule', 'policyDescList', 'focusList'])
+    },
+    components: {
+      lbt
+    },
+
     mounted() {
-      new Swiper('.swiper-container', {
-        loop: true,// 循环模式选项
-        // 如果需要分页器
-        pagination: {
-          el: '.swiper-pagination',
-        },
-        autoplay: true //自动播放
-      })
+      //异步获得首页十个导航
+      this.$store.dispatch('getking')
+      //异步获取首页大的动图以及下面的小图
+      this.$store.dispatch('getbig')
+      //异步获得首页三个low
+      this.$store.dispatch('getpolicy')
+      //异步获得首页轮播图
+      this.$store.dispatch('getfocus')
+
+      // 必须在列表数据显示之后创建才能正常形成轮播
       new BScroll('.pic-wrapper', {
         click: true,
         scrollX: true,  //水平滑动
       })
     },
-    methods:{
-    }
+    methods: {
+      //跳转登录路由
+      register() {
+        this.$router.push('/personage')
+      }
+    },
   }
 
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   @import "../../common/stylus/mixins.styl"
-  .m-index{
-    height 2550px
+  .m-index {
+    height 3000px
   }
-   .header{
-     height 148px
-   }
+
+  .header {
+    height 148px
+  }
 
   .m-indexHd {
     background-color #fff
@@ -347,7 +482,7 @@
     position fixed !important
     left 0
     top: 0
-    width:100%
+    width: 100%
   }
 
   .m-indexHd .line {
@@ -696,17 +831,22 @@
   }
 
   .m-indexBigPromotionModule {
+    width: 10rem;
+    height: 4.408888888888889rem;
     clearFix()
+  }
+
+  .m-indexBigPromotionModule .promItem img {
+    width: 100%;
+    height: 100%;
   }
 
   .m-indexFloor {
     background-color #fff
-    margin-bottom .26667rem
   }
 
   .m-freshmanModule {
     background #fff
-    padding-bottom .4rem
     clearFix()
   }
 
@@ -743,7 +883,8 @@
     height: .04rem;
     background: #333;
   }
-  .m-freshmanModule .content{
+
+  .m-freshmanModule .content {
     padding-left: .4rem;
     overflow: hidden;
   }
@@ -824,7 +965,6 @@
     height: auto;
   }
 
-
   .m-activityItem .picWrap .discount .line1 {
     font-size: .32rem;
   }
@@ -880,7 +1020,6 @@
     height: auto;
   }
 
-
   .m-activityItem .picWrap .discount .line1 {
     font-size: .32rem;
   }
@@ -915,6 +1054,113 @@
     font-size: .29333rem;
     line-height: .42667rem;
     text-align: center;
+  }
+
+  .private {
+    margin-bottom: .26667rem;
+    background-color: #fff
+    .private-title {
+      width: 100%;
+      padding: 0 .4rem;
+      box-sizing: border-box
+      background: #fff;
+      overflow: hidden;
+      .left {
+        float: left;
+        font-size: .42667rem;
+        font-family: PingFangSC-Regular;
+      }
+    }
+    .private-lbt {
+      position: relative
+      background-color: #fff
+      .swiper-container {
+        padding-bottom: .8rem;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        .swiper-wrapper {
+          position: relative;
+          width: 100%;
+          z-index: 1;
+          height: auto;
+          display: flex;
+          box-sizing: content-box;
+          .swiper-slide {
+            height: auto;
+            width: 750px;
+            flex-shrink: 0;
+            position: relative;
+            .item {
+              padding: 0 !important;
+              margin-left: .26667rem;
+              width: 2.88rem;
+              float: left;
+              .good {
+                display block
+                color #333
+                .tupian {
+                  background-color: #f5f5f5
+                  div {
+                    margin-bottom: .16rem;
+                    width: 2.88rem;
+                    height: 2.88rem;
+                    background-color: #f5f5f5
+                    img {
+                      background-color: #f5f5f5;
+                      top: 0;
+                      left: 0;
+                      width: 2.88rem;
+                      height: 2.88rem;
+                      display block
+                    }
+                  }
+                }
+                .name {
+                  margin-top: 0;
+                  margin-bottom: .13333rem;
+                  padding: 0 .13333rem;
+                  font-size: .32rem;
+                  overflow: visible;
+                  white-space: normal;
+                  line-height: .48rem;
+                  .price {
+                    color #b4282d
+                  }
+                }
+                .specification {
+                  position: absolute;
+                  border-width: .5px;
+                  border-radius: .02667rem;
+                  border-style: solid;
+                  border-color: #b4a078;
+                  width: .42667rem;
+                  background: #f4f4f4;
+                  top: 0;
+                  margin-top: .13333rem;
+                  margin-left: .13333rem;
+                  padding: .16rem 0;
+                  color: #b4a078;
+                  display: flex;
+                  -webkit-box-direction: normal;
+                  -webkit-box-orient: vertical;
+                  flex-direction: column;
+                  -webkit-box-pack: center;
+                  justify-content: center;
+                  div {
+                    font-size: .26667rem;
+                    text-align: center;
+                    line-height: 1;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
 

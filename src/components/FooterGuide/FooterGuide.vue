@@ -26,7 +26,7 @@
     </span>
       <span>购物车</span>
     </router-link>
-    <router-link  class="guide_item" :class="{on:$route.path==='/personage'}" to="/personage">
+    <router-link  class="guide_item" :class="{on:$route.path==='/profile'}" to="/profile">
     <span class="item_icon">
       <i class="iconfont icon-me"></i>
     </span>
