@@ -26,21 +26,18 @@
       </header>
     </div>
     <div class="m-tab">
-      <div class="tab-b">
-        <a href="javascript:;" class="item active">推荐</a>
-        <a href="javascript:;" class="item">达人</a>
-        <a href="javascript:;" class="item">上新</a>
-        <a href="javascript:;" class="item">晒单</a>
-        <a href="javascript:;" class="item">HOME</a>
+      <div class="tab-b">                                                                            <!--{加了{}相当于是判断}-->
+        <a :href="`/#/things?t=${t.tabId}`" class="item" v-for="(t,index) in tb" :key="index" :class="{active:currentIndex===t.tabId}">{{t.tabName}}</a>
+
       </div>
     </div>
     <div>
       <div class="m-main">
-        <div class="m-tpls one">
-          <div class="one-pic"><img :src="general[0].ad.picUrl" alt="xx" v-if="general.length"></div>
+        <div class="m-tpls one" v-if="">
+          <div class="one-pic">
+            <img :src="general[1].ad.picUrl" alt="xx" v-if="general.length">
+          </div>
         </div>
-
-
         <div v-for="(sub,index) in subs" :key="index">
           <div class="m-tpls m-tpls-picker" v-if="sub.type === 1">
             <a href="javascript:;" class="u-flexbox">
@@ -74,6 +71,21 @@
               </div>
             </a>
           </div>
+          <div class="m-tpls m-tpls-rec" v-else="sub.type === 2 ">
+            <a href="javascript:;" class="recs">
+              <div class="u-name">
+                <span class="ava"><img :src="sub.avatar" alt=""></span>
+                <span>{{sub.nickname}}</span>
+              </div>
+              <div class="title">{{sub.title}}</div>
+              <div class="u-pic"><img :src="sub.picUrl" alt=""></div>
+              <div class="u-rcount">
+                <i class="ico"></i>
+                <span>{{sub.readCount}}人看过</span>
+              </div>
+            </a>
+          </div>
+
         </div>
 
       </div>
@@ -96,14 +108,40 @@
       }
     },
     mounted(){
-      this.$store.dispatch('getgeneral')
+      this.$store.dispatch('gettb')
     },
     computed:{
-      ...mapState(['general'])
+      ...mapState(['general','tb','dr']),
+      currentIndex(){
+        let flag=9
+        let path=this.$route.fullPath
+        let id = path.split("=")[1]
+        console.log(id);
+        this.tb.map((item)=>{
+          //==和===有区别  会有一个转换
+           if(item.tabId==id){
+             return flag=id
+           }
+        })
+        console.log(flag);
+        return flag
+      }
     },
-
     //监听
     watch:{
+      dr(){
+        this.subs = this.dr.result
+      },
+      currentIndex(){
+        if(this.currentIndex==9){
+          this.subs=[]
+          this.$store.dispatch('getgeneral')
+        }else if(this.currentIndex==4){
+          this.subs=[]
+          this.$store.dispatch('getdr')
+        }
+      },
+
       general(){
         //方法1
        /* this.general.map((gen,index)=>{
@@ -125,8 +163,6 @@
           // arr = arr.concat(...item.topics) //concat()合并里面的元素
         })
         this.subs = arr
-        // console.log(res);
-
       }
     }
 

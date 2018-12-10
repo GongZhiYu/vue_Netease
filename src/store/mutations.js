@@ -5,11 +5,29 @@ import {
   RECEIVE_SORT,
   RECEIVE_POLICY,
   RECEIVE_KING,
-  RECEIVE_GENERAL,
   RECEIVE_FOCUSLIST,
+  RECEIVE_USER,
+  RESET_USER,
+  Reset_TB, //识物头部真请求
+  RECEIVE_GENERAL,//识物推荐真
+  RECEIVE_DR,//识物达人真
 } from "./mutation-types";
 
 export default {
+
+  //识物头部真请求
+  [Reset_TB](state,{tb}){
+    state.tb=tb
+  },
+  //识物推荐数据
+  [RECEIVE_GENERAL](state,{general}){
+    state.general=general
+  },
+  //识物达人真
+  [RECEIVE_DR](state,{dr}){
+    console.log(dr);
+    state.dr=dr
+  },
   //大的动图以及下面的小图
   [RECEIVE_BIG](state,{bigPromotionModule}){
     state.bigPromotionModule=bigPromotionModule
@@ -26,12 +44,19 @@ export default {
   [RECEIVE_KING](state,{kingKongModule}){
     state.kingKongModule=kingKongModule
   },
-  //识物数据
-  [RECEIVE_GENERAL](state,{general}){
-    state.general=general
-  },
+
   //轮播图
   [RECEIVE_FOCUSLIST](state,{focusList}){
     state.focusList=focusList
   },
+
+  //用户信息
+  [RECEIVE_USER](state,{user}){
+    state.user=user
+  },
+  //退出
+  [RESET_USER](state){
+    state.user={}
+  },
+
 }

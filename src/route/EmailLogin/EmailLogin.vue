@@ -29,21 +29,24 @@
                 <div class="m-container">
                   <div class="inputbox">
                     <div class="u-input box">
-                      <input type="text" class="dlemail" placeholder="邮箱账号">
+                      <input type="text" class="dlemail" placeholder="邮箱账号" v-model="name">
+                      <!--<botton :disabled="!isEmail" class="get_verification"></botton>-->
                     </div>
                   </div>
                   <div class="m-pccnt f-cb">
                     <div class="m-pcbox" style="z-index: 1111">
                       <div class=" m-mb m-pc f-fl">
                         <div class="u-input">
-                          <input type="text" placeholder="密码" class="j-inputtext pcin">
+                          <input type="password" placeholder="密码" class="j-inputtext pcin" v-model="pwd">
                         </div>
                       </div>
                     </div>
                     <div class="m-pcbox" style="z-index: 1111">
                       <div class=" m-mb m-pc f-fl">
                         <div class="u-input">
-                          <input type="text" placeholder="确定密码" class="j-inputtext pcin">
+                          <input type="text" maxlength="11" placeholder="验证码" v-model="captcha">
+                          <img ref="a" @click="updatea" class="get_verification" src="http://localhost:5000/captcha"
+                               alt="captcha">
                         </div>
                       </div>
                     </div>
@@ -55,7 +58,7 @@
                       <div class="logoWrap">
                       </div>
                       <div class="btnWrap">
-                        <div class="w-button w-button-xl w-button-block">
+                        <div class="w-button w-button-xl w-button-block" @click="login">
                           <i class="u-icon u-icon-loginPhone"></i>
                           <span>登录</span>
                         </div>
@@ -82,8 +85,55 @@
 </template>
 
 <script>
+  import {reqLanding} from '../../api'
+  import {Toast, MessageBox} from 'mint-ui';
+
+
   export default {
+    data(){
+      return{
+        name: "",  //邮箱
+        pwd: "", //密码
+        captcha:"",//确定密码
+      /*  updatea:""//验证码*/
+      }
+    },
+    computed:{
+    },
     methods:{
+      //登陆
+     async login(){
+        const {name,pwd,captcha}= this
+        let result
+        if (!name) {
+          return MessageBox.alert('请输入正确的邮箱');
+        } else if (!pwd) {
+          return MessageBox.alert('密码不正确');
+        } else if (captcha.length !== 4) {
+          return MessageBox.alert('验证码必须是4位');
+        }
+       //发送登陆的请求
+       result = await reqLanding({pwd, captcha, name})
+       if (result.code !== 0) {
+         //更新图片验证码
+         this.updatea()
+       }
+       //3根据请求返回的结果,做不同的响应
+       if (result.code === 0) {  //登录请求成功
+         //保存user到state中
+         const user = result.data
+         this.$store.dispatch('saveUser', user)
+         //跳转到个人页面
+         this.$router.replace('/profile')
+       } else {  //失败
+         MessageBox.alert('登录请求失败');
+       }
+      },
+      // 更新显示验证码图片
+      updatea() {
+        // 一旦指定的src值与原本的src不同, 浏览器就会自动重新发请求
+        this.$refs.a.src = 'http://localhost:5000/captcha?time=' + Date.now()
+      },
       //跳转
       // 购物车路由
       shopping(){
@@ -104,6 +154,17 @@
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   @import "../../common/stylus/mixins.styl"
 
+  .get_verification
+    position absolute
+    top 50%
+    right 10px
+    transform translateY(-50%)
+    border 0
+    color #ccc
+    font-size 14px
+    background transparent
+    &.right_phone_number
+      color black
   .m-hd {
     position: fixed !important;
     left: 0;

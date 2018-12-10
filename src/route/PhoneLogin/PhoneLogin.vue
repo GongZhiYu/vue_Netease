@@ -29,14 +29,17 @@
                 <div class="m-container">
                   <div class="inputbox">
                     <div class="u-input box">
-                      <input type="text" class="dlemail" placeholder="请输入手机号">
+                      <input type="text" class="dlemail" placeholder="请输入手机号" maxlength="11" v-model="phone">
+                      <button class="get_verification" :disabled="!isRightPhone || computeTime>0"></button>
                     </div>
                   </div>
                   <div class="m-pccnt f-cb">
                     <div class="m-pcbox" style="z-index: 1111">
                       <div class=" m-mb m-pc f-fl">
                         <div class="u-input">
-                          <input type="text" placeholder="请输入短信验证码" class="j-inputtext pcin">
+                          <input type="text" placeholder="请输入短信验证码" class="j-inputtext pcin" v-model="code">
+                          <button class="get_verification"></button>
+
                         </div>
                       </div>
                       <div class="pcbtn f-fl" @click.prevent="sendCode"> <!--prevent阻止默认行为 不让他提交-->
@@ -51,7 +54,7 @@
                       <div class="logoWrap">
                       </div>
                       <div class="btnWrap">
-                        <div class="w-button w-button-xl w-button-block" @click="debark">
+                        <div class="w-button w-button-xl w-button-block" @click.prevent="login">
                           <i class="u-icon u-icon-loginPhone"></i>
                           <span>登录</span>
                         </div>
@@ -79,7 +82,7 @@
 
 <script>
   import {Toast, MessageBox} from 'mint-ui';
-  import {reqSms} from '../../api'
+  import {reqSms,reqmobilePhone} from '../../api'
 
   export default {
     data() {
@@ -92,12 +95,13 @@
     },
     computed: {
       //phone是否是个正确的手机号
-      debark() {
+      isRightPhone() {
         return /^1\d{10}$/.test(this.phone) //test正则里面的方法  满足匹配为true
       }
     },
     methods: {
-       sendCode() {
+      //请求发送短信验证码
+      async sendCode() {
         //开始倒计时
         this.computeTime = 60
         //启动循环定时器
@@ -109,8 +113,43 @@
             this.computeTime = 0
             clearInterval(dsq)
           }
-        },1000)
+        }, 1000)
+        //发送异步ajax请求
+        const result = await reqSms(this.phone)  //在发送ajax请求 ,是异步的 所以要加await
+        if (result.code === 0) {
+          Toast('验证码发送成功')
+        } else {
+          this.computeTime = 0   //停止定时器
+          MessageBox.alert('发送验证码失败');
+        }
       },
+
+      //登陆
+      async login(){
+        //1进行前台表单验证
+         const {phone,code,computeTime,isRightPhone} =this
+         let result
+         if(!isRightPhone){
+           return MessageBox.alert('手机号不正确');
+         }else if (!/^\d{6}$/.test(code)){
+           return MessageBox.alert('验证码必须是6位');
+         }
+         //发送登陆的请求
+        result = await reqmobilePhone(phone, code) //在发送ajax请求 ,是异步的 所以要加await
+        if(result.code !==0){
+          //停止计时
+          this.computeTime = 0
+        }
+        if (result.code === 0) {  //登录请求成功
+          //保存user到state中
+          const user = result.data
+          this.$store.dispatch('saveUser', user)
+          //跳转到个人页面
+          this.$router.replace('/profile')
+        } else {  //失败
+          MessageBox.alert('登录请求失败');
+        }
+       },
 
       //跳转购物车路由
       shopping() {
@@ -130,6 +169,18 @@
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   @import "../../common/stylus/mixins.styl"
+
+  .get_verification
+    position absolute
+    top 50%
+    right 10px
+    transform translateY(-50%)
+    border 0
+    color #ccc
+    font-size 14px
+    background transparent
+    &.right_phone_number
+      color black
 
   .m-hd {
     position: fixed !important;

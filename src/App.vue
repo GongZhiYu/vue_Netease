@@ -11,10 +11,14 @@
   import FooterGuide from './components/FooterGuide/FooterGuide'
 
   export default {
+    mounted(){
+      //异步获取当前用户信息
+      this.$store.dispatch('getUser')
+    },
     name: 'App',
     components: {
       FooterGuide,
-    }
+    },
   }
 </script>
 

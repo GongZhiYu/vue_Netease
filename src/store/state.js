@@ -11,5 +11,11 @@ export default {
   policyDescList:[],//三个中间的字
   focusList:[],//轮播图
   sort:[],//分类数据
-  general:[]//识物数据
+
+
+  user:{},//用户信息
+
+  tb:[],//头部识物真请求
+  general:[],//识物推荐真数据
+  dr:{} //识物达人真数据
 }

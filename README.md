@@ -67,6 +67,7 @@ vuex:: 定义基本初始化数据--->state
         //伪数组转真数组遍历
            Array.from().map(()=>{})
 
+       v-for的优先级比v-if的优先级高
    
        什么时候要加v-if  报错了 数据出来了 但是报错
        
@@ -121,6 +122,20 @@ vuex:: 定义基本初始化数据--->state
 ## 第五天
 
 ```
+  "dev" xxxxxxxxxxx --host 192.168.0.127
+  
+disabled属性 动态控制input
+交给vuex(store)管理的状态(数据)后台的 就不需要引入import
+没交给vuex管理的数据就需要
+
+保存用户信息
+自动登录
+用户登录
+手机号登录
+退出登录 使用第三方库 :     
+            在全局中引入 import {Button} from 'mint-ui'    
+            注册标签组件 Vue.component(Button.name,Button)
+            使用::    <mt-button></mt-button>
 
 ```
 

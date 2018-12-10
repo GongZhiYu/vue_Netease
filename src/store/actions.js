@@ -7,6 +7,10 @@ import {
   RECEIVE_KING, //十个导航
   RECEIVE_POLICY, //三个中间的字
   RECEIVE_SORT, //分类数据
+  RECEIVE_USER,//用户信息
+  RESET_USER, //用户退出
+  Reset_TB, //识物头部真请求
+  RECEIVE_DR //识物达人
 } from "./mutation-types"
 
 import {
@@ -15,11 +19,50 @@ import {
   reqgeneral,  //识物数据
   reqkingKongModule, //首页十个导航
   reqpolicyDescList,  //首页三个中间的字
-  reqsort //分类数据
+  reqsort, //分类数据
+  reqUser, //获取当前用户
+  reqLogout,//用户退出
+  reqtb, //识物头部真请求
+  reqdr, //识物达人
 } from "../api";
 
 
 export default {
+  //识物头部真请求
+  async gettb({commit}){
+    // 1.发送异步ajax请求
+    // console.log('11111111111111');
+    const result=await reqtb()
+    // 2.根据结果提交mutation
+    if(result.code==="200"){
+      const tb = result.data
+      commit(Reset_TB,{tb})
+    }
+  },
+  //获得识物推荐数据的异步action
+  async getgeneral({commit}){
+    // 1.发送异步ajax请求
+    const result = await reqgeneral()
+    // 2.根据结果提交mutation
+    if(result.code ==="200"){
+      const general = result.data
+      commit(RECEIVE_GENERAL,{general})
+    }
+  },
+  //获得识物达人数据的异步action
+  async getdr({commit}){
+    //1发送异步ajax请求
+    const result = await reqdr()
+    // 2.根据结果提交mutation
+    if(result.code==="200"){
+      const dr = result.data
+      console.log(dr);
+      commit (RECEIVE_DR,{dr})
+    }
+  },
+
+
+
 
   //获得首页十个导航的异步action
  async getking ({commit}){
@@ -68,13 +111,30 @@ export default {
       commit(RECEIVE_SORT,{sort})
     }
   },
-//获得识物数据的异步action
-  async getgeneral({commit}){
+
+
+  //保存user的同步的action
+   saveUser({commit}, user) {
+    commit(RECEIVE_USER, {user})
+  },
+
+// 获取当前用户的异步action
+  async getUser({commit}) {
+    const result = await reqUser()
+    if (result.code === 0) {
+      const user = result.data
+      commit(RECEIVE_USER, {user})
+      console.log(user+'222222');
+
+    }
+  },
+  //请求退出的异步action
+  async logout({commit}) {
     // 1.发送异步ajax请求
-    const result = await reqgeneral()
-    if(result.code ===0){
-      const general = result.data
-      commit(RECEIVE_GENERAL,{general})
+    const result = await reqLogout()
+    // 2.根据结果提交mutation
+    if (result.code === 0) {
+      commit(RESET_USER)
     }
   },
 }

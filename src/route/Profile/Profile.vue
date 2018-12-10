@@ -22,8 +22,8 @@
           <i class="iconfont icon-person"></i>
         </div>
         <div class="user-info">
-          <p class="user-info-top">登录/注册</p>
-          <p><span class="icon-mobile-number">暂无绑定手机号</span>
+          <p class="user-info-top" v-if="!user.phone">{{user.name?user.name:`登陆/注册`}}</p>
+          <p><span class="icon-mobile-number" v-if="!user.name">{{user.phone? user.phone:`暂无绑定手机号`}}</span>
           </p>
         </div>
         <span class="arrow">
@@ -86,35 +86,38 @@
         </div>
       </a>
     </section>
-    <section class="profile_my_order border-1px">
-      <!-- 服务中心 -->
-      <a href="javascript:" class="my_order">
-        <span>
-          <i class="iconfont icon-fuwu"></i>
-        </span>
-        <div class="my_order_div">
-          <span>服务中心</span>
-          <span class="my_order_icon">
-            <i class="iconfont icon-jiantou1"></i>
-          </span>
-        </div>
-      </a>
+    <section class="profile_my_order border-1px" v-if="user._id">
+      <mt-button type="danger" style="width: 100%;" @click="logout">退出登录</mt-button>
     </section>
   </section>
 </template>
 
 
 <script>
+  import {mapState} from 'vuex'
+  import {Button,MessageBox} from  'mint-ui'
 
   export default {
     name: "profile",
     components: {
     },
     computed: {
-
+      ...mapState(['user'])
 
     },
     methods:{
+      logout(){
+        MessageBox.confirm('确定要退出吗?').then(
+          action => {
+            console.log('1', action)
+            // 发送登出的请求
+            this.$store.dispatch('logout')
+          },
+          action=>{
+            console.log('2', action)
+          }
+        )
+      }
     }
   }
 </script>
