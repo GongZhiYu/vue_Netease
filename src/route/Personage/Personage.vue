@@ -9,7 +9,7 @@
                 <a class="u-icon u-icon-home" @click="homeage"></a>
                 <a href="javascript:;"><i class="logo u-icon u-icon-logo" ></i></a>
                 <div class="right">
-                  <a href="javascript:;" class="search">
+                  <a href="javascript:;" class="search" @click="sos">
                     <li class="u-icon u-icon-search1"></li>
                   </a>
                   <a href="javascript:;" class="cart">
@@ -76,6 +76,10 @@
   export default {
 
     methods:{
+      //跳转搜索
+      sos(){
+        this.$router.push('/sos')
+      },
       //跳转购物车路由
       shopping(){
         this.$router.push('/trolley')

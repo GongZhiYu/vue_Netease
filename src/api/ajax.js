@@ -5,9 +5,8 @@
 * */
 //ajax请求函数模块
 import axios from 'axios'
-
+import qs from 'querystring'
 export default function ajax(url, data={}, method='GET') {
-
   return new Promise((resolve, reject) => {
     let promise
     if(method==='GET') {
@@ -27,7 +26,7 @@ export default function ajax(url, data={}, method='GET') {
       promise = axios.get(url) // url?username=tom&password=123
       // return axios.get(url, {params: data}) // url?username=tom&password=123
     } else {
-      promise = axios.post(url, data)
+      promise=axios.post(url,qs.stringify(data), {headers: {'Content-Type':'application/x-www-form-urlencoded'}});
     }
 
     promise.then(response => {

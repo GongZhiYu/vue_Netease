@@ -13,6 +13,7 @@ import CW from  '../route/CW/CW'
 import PhoneLogin  from '../route/PhoneLogin/PhoneLogin'
 import EmailLogin from '../route/EmailLogin/EmailLogin'
 import Profile from '../route/Profile/Profile'
+import Sos from '../route/Sos/Sos'
 
 
 //必须声明使用
@@ -21,6 +22,10 @@ Vue.use(VueRouter)
 export default new VueRouter({
   //配置应用所以路由
   routes:[
+    {
+      path:"/sos", //搜索
+      component:Sos
+    },
     {
       path:'/page',
       component:Page,   //首页

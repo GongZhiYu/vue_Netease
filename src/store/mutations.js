@@ -1,4 +1,4 @@
-/*包含n个用来直接更新状态数据的方法的对象*/
+    /*包含n个用来直接更新状态数据的方法的对象*/
 import Vue from 'vue'
 import {
   RECEIVE_BIG,
@@ -11,6 +11,8 @@ import {
   Reset_TB, //识物头部真请求
   RECEIVE_GENERAL,//识物推荐真
   RECEIVE_DR,//识物达人真
+  RECEIVE_INPUTS,//模糊搜索
+  RECEIVE_SHOPLIST //搜索列表商品数据
 } from "./mutation-types";
 
 export default {
@@ -28,6 +30,16 @@ export default {
     console.log(dr);
     state.dr=dr
   },
+  //模糊搜索
+  [RECEIVE_INPUTS](state,{inputs}){
+    state.inputs=inputs
+  },
+  //搜索列表商品数据
+  [RECEIVE_SHOPLIST](state,{shopList}){
+    state.shopList = shopList;
+  },
+
+
   //大的动图以及下面的小图
   [RECEIVE_BIG](state,{bigPromotionModule}){
     state.bigPromotionModule=bigPromotionModule

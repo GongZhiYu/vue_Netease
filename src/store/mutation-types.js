@@ -15,3 +15,7 @@ export const RESET_USER = 'reset_user'  //登出用户
 export const Reset_TB='reset_tb'  //识物头部真请求
 export const RECEIVE_GENERAL ='receive_general'//识物推荐真数据
 export const RECEIVE_DR = 'reset_dr' //识物达人请求
+
+export const RECEIVE_INPUTS='receive_inputs' //模糊搜索
+export const RECEIVE_SHOPLIST = 'receive_shoplist'; //搜索列表商品数据
+

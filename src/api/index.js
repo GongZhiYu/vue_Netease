@@ -20,6 +20,14 @@ export const reqgeneral = () => {
 export const reqdr=()=>{
   return ajax(TBs+'/topic/v1/find/getTabData.json?page=1&size=5&tabId=4')
 }
+//模糊搜索
+export const reqinputs=({keywordPrefix,url})=>{
+  return ajax(TBs+url,{keywordPrefix:keywordPrefix},"POST")
+}
+//请求搜索列表商品数据
+export const reqShopList = ({url})=>{
+  return ajax(TBs+url);
+};
 
 
 //首页十个导航

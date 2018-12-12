@@ -26,7 +26,7 @@
       </header>
     </div>
     <div class="m-tab">
-      <div class="tab-b">                                                                            <!--{加了{}相当于是判断}-->
+      <div class="tab-b">                                                                            <!--{加了{}相当于是判断} 动态添加类名,结果为true添加-->
         <a :href="`/#/things?t=${t.tabId}`" class="item" v-for="(t,index) in tb" :key="index" :class="{active:currentIndex===t.tabId}">{{t.tabName}}</a>
 
       </div>

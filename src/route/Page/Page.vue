@@ -4,7 +4,7 @@
       <div class="m-indexHd">
         <div class="line">
           <a href="javascript:;" class="logo"></a>
-          <div class="m-topSearchIpt ipt">
+          <div class="m-topSearchIpt ipt" @click="sos">
             <i class="icon"></i>
             <span class="placeholder">搜索商品, 共19914款好物</span>
           </div>
@@ -458,6 +458,10 @@
       //跳转登录路由
       register() {
         this.$router.push('/personage')
+      },
+      //跳转搜索
+      sos(){
+        this.$router.push('/sos')
       }
     },
   }

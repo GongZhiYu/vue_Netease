@@ -2,7 +2,7 @@
   <div class="classify">
     <div class="header" style="height: 44px">
       <div class="m-hd">
-        <div class="search-item">
+        <div class="search-item" @click="sos">
           <div class="s-int">
             <i></i>
             <span>搜索商品, 共19931款好物</span>
@@ -45,6 +45,10 @@
 
   export default {
     methods:{
+      //跳转搜索
+      sos(){
+        this.$router.push('/sos')
+      },
       dot(sub){
         this.index=sub
       }
